@@ -18,7 +18,7 @@ module.exports = function({
   const logger = require("../utils/log.js");
   (async () => {
     try {
-      logger.loader("Tiến hành tải dữ liệu người dùng và nhóm");
+      logger.loader("Tiáº¿n hĂ nh táº£i dá»¯ liá»‡u ngÆ°á»i dĂ¹ng vĂ  nhĂ³m");
       const [threads, users, currencies] = await Promise.all([
         Threads.getAll(),
         Users.getAll(['userID', 'name', 'data']),
@@ -64,10 +64,10 @@ module.exports = function({
         const dataC = currencies[i];
         global.data.allCurrenciesID.push(String(dataC.userID));
       }
-      logger.loader(`Tải thành công dữ liệu của ${global.data.allThreadID.length} nhóm`);
-      logger.loader(`Tải thành công dữ liệu của ${global.data.allUserID.length} người dùng`);
+      logger.loader(`Táº£i thĂ nh cĂ´ng dá»¯ liá»‡u cá»§a ${global.data.allThreadID.length} nhĂ³m`);
+      logger.loader(`Táº£i thĂ nh cĂ´ng dá»¯ liá»‡u cá»§a ${global.data.allUserID.length} ngÆ°á»i dĂ¹ng`);
     } catch (error) {
-      logger(`Tải môi trường thất bại: ${error}`, 'error');
+      logger(`Táº£i mĂ´i trÆ°á»ng tháº¥t báº¡i: ${error}`, 'error');
     }
   })();
   require('./handle/handleSchedule.js')({
@@ -76,7 +76,7 @@ module.exports = function({
     Users,
     models
   });
-  logger(`${api.getCurrentUserID()} - [ ${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? "This bot was made by CatalizCS and SpermLord" : global.config.BOTNAME}`, "[ BOT INFO ] >");
+  logger(`${api.getCurrentUserID()} - [ ${global.config.PREFIX} ] â€¢ ${(!global.config.BOTNAME) ? "This bot was made by CatalizCS and SpermLord" : global.config.BOTNAME}`, "[ BOT INFO ] >");
   const handlers = fs.readdirSync(path.join(__dirname, './handle')).reduce((acc, file) => {
     return {
       ...acc,
@@ -109,8 +109,8 @@ module.exports = function({
       const j = i.hasOwnProperty('PREFIX') ? i.PREFIX : global.config.PREFIX;
       const k = global.config.BOTNAME;
       if (event.body && event.body.toLowerCase() === 'duyetbox') {
-        api.sendMessage(`[ Thông Báo ]\n\n📜 Yêu cầu duyệt từ box ID: ${event.threadID}`, f);
-        return api.sendMessage(`✅ Đã gửi yêu cầu duyệt đến nhóm admin!`, event.threadID, async (err, info) => {
+        api.sendMessage(`[ ThĂ´ng BĂ¡o ]\n\nđŸ“œ YĂªu cáº§u duyá»‡t tá»« box ID: ${event.threadID}`, f);
+        return api.sendMessage(`âœ… ÄĂ£ gá»­i yĂªu cáº§u duyá»‡t Ä‘áº¿n nhĂ³m admin!`, event.threadID, async (err, info) => {
           if (err) console.error(err);
           await new Promise(resolve => setTimeout(resolve, 10 * 1000));
           api.unsendMessage(info.messageID);
@@ -122,7 +122,7 @@ module.exports = function({
         });
       }
       if (event.body && event.body.startsWith(j)) {
-        return api.sendMessage(`❎ Nhóm của bạn chưa được Admin duyệt, hãy chat "duyetbox" để yêu cầu được duyệt`, event.threadID, async (err, info) => {
+        return api.sendMessage(`â NhĂ³m cá»§a báº¡n chÆ°a Ä‘Æ°á»£c Admin duyá»‡t, hĂ£y chat "duyetbox" Ä‘á»ƒ yĂªu cáº§u Ä‘Æ°á»£c duyá»‡t`, event.threadID, async (err, info) => {
           if (err) console.error(err);
           await new Promise(resolve => setTimeout(resolve, 10 * 1000));
           api.unsendMessage(info.messageID);
@@ -149,11 +149,11 @@ module.exports = function({
         ]);
         break;
       case "event":
-        await Promise.all([ handlers['handleEvent']({
+        await  handlers['handleEvent']({
           event
-        }),
-        handlers['handleRefresh']({ event }),
-        ]);
+        })
+
+;
         break;
       case "message_reaction":
         await handlers['handleReaction']({
